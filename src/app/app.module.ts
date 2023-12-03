@@ -10,7 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostComponent } from './components/post/post.component';
-import { AdminComponent } from './components/admin/admin.component';
+// import { AdminComponent } from './components/admin/admin.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -27,6 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { PopupCartComponent } from './components/cart/popup-cart/popup-cart.component';
 import { FinishedComponent } from './components/checkout/finished/finished.component';
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -36,7 +38,6 @@ export function tokenGetter() {
     NavComponent,
     HomeComponent,
     PostComponent,
-    AdminComponent,
     AuthComponent,
     BookDetailComponent,
     CartComponent,
@@ -46,7 +47,9 @@ export function tokenGetter() {
     SearchNameComponent,
     PopupCartComponent,
     FinishedComponent,
-    AddressPopupComponent
+    AddressPopupComponent,
+    HomeAdminComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
