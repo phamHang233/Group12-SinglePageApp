@@ -34,6 +34,7 @@ export class AuthService {
   public get userValue(): User {
     return this.userSubject.value!;
   }
+  
   isAuthenticated() {
     if (this.userValue != null) {
       return true;
@@ -42,9 +43,10 @@ export class AuthService {
       return false
     }
   }
+
   login(loginModel: LoginModel) {
-    return this.httpClient.post(this.apiUrl + 'user/login', loginModel);
-    // return this.httpClient.get<Array<User>>(this.apiUrl + 'register?email=' + loginModel.email);
+    //return this.httpClient.post(this.apiUrl + 'user/login', loginModel);
+    return this.httpClient.get<Array<User>>(this.apiUrl + 'register?email=' + loginModel.email);
   }
 
   register(data: any) {
@@ -66,6 +68,4 @@ export class AuthService {
       this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')!));
     })
   }
-
-
 }

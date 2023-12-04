@@ -11,7 +11,6 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostComponent } from './components/post/post.component';
 import { AdminComponent } from './components/admin/admin.component';
-import { AuthComponent } from './components/auth/auth.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CategoryComponent } from './components/category/category.component';
@@ -27,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { PopupCartComponent } from './components/cart/popup-cart/popup-cart.component';
 import { FinishedComponent } from './components/checkout/finished/finished.component';
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
+import { LoginComponent } from './components/auth/login/login.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -37,7 +37,6 @@ export function tokenGetter() {
     HomeComponent,
     PostComponent,
     AdminComponent,
-    AuthComponent,
     BookDetailComponent,
     CartComponent,
     CategoryComponent,
@@ -46,7 +45,8 @@ export function tokenGetter() {
     SearchNameComponent,
     PopupCartComponent,
     FinishedComponent,
-    AddressPopupComponent
+    AddressPopupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
