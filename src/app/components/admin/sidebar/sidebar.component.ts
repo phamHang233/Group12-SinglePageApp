@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from '../../../services/sidebar.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  isSidebarVisible: boolean = false;
+
+  constructor(private sidebarService: SidebarService) {}
+
   ngOnInit() {
+    this.sidebarService.isSidebarVisible$.subscribe((isVisible) => {
+      this.isSidebarVisible = isVisible;
+    });
+
+    
     const body = document.querySelector("body")!;
 
     // add class 'hover-open' to sidebar navitem while hover in sidebar-icon-only menu
@@ -24,7 +34,9 @@ export class SidebarComponent implements OnInit {
     });
 
   }
-
+  toggleSidebar(): void {
+    this.isSidebarVisible ? this.sidebarService.hideSidebar() : this.sidebarService.showSidebar();
+  }
   public parentId = "";
   clickedMenu(event: { currentTarget: any; }) {
     var target = event.currentTarget;

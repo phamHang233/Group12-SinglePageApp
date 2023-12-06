@@ -55,6 +55,8 @@
     height: 100%;
     position: fixed;
     top: 150px;
+    transition: width 0.3s ease;
+    /* Add a transition effect for smooth animation */
 }
 
 .sidebar-menu {
@@ -67,6 +69,21 @@
     margin-bottom: 10px;
 
 }
+
+/* .content-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.sidebar-container {
+    width: 200px;
+    transition: width 0.3s ease;
+}
+
+.sidebar-hidden {
+    width: 0;
+    overflow: hidden;
+} */
 
 .sidebar-link {
     display: block;
@@ -120,6 +137,7 @@
 } */
 
 .content-container {
+    width: 75vw;
 
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .05);
     border-radius: 0.5rem;
@@ -216,7 +234,7 @@
 
 .fw-semibold {
     font-size: 3rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .fw-normal {
@@ -239,4 +257,60 @@
     font-size: 2rem;
     font-weight: 50;
     margin-top: 10px;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+a {
+    background-image: linear-gradient(to right,
+            #54b3d6,
+            #54b3d6 50%,
+            #ffffff 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+a:before {
+    content: '';
+    background: #54b3d6;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    background-position: 0;
+}
+
+a:hover::before {
+    width: 100%;
+}
+
+.highlight-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: yellow;
+    /* Highlight color */
+    z-index: -1;
+    transition: width 0.3s ease;
+}
+
+.active {
+    color: blue;
+    /* Change color of active link */
 }

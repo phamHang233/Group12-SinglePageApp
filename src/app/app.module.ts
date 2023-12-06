@@ -29,6 +29,11 @@ import { FinishedComponent } from './components/checkout/finished/finished.compo
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
+import { AddBookComponent } from './components/admin/add-book/add-book.component';
+import { EditBookComponent } from './components/admin/edit-book/edit-book.component';
+import { HomeBookComponent } from './components/admin/home-book/home-book.component';
+import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
+import { StatisticComponent } from './components/admin/statistic/statistic.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -49,7 +54,12 @@ export function tokenGetter() {
     FinishedComponent,
     AddressPopupComponent,
     HomeAdminComponent,
-    SidebarComponent
+    SidebarComponent,
+    AddBookComponent,
+    EditBookComponent,
+    HomeBookComponent,
+    LineChartComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,

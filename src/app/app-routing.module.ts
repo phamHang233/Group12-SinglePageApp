@@ -13,10 +13,10 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 // import { AuthGuard } from './components/auth/_helpers/login.guard';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
-// import { HomeBookComponent } from './components/admin/home-book/home-book.component';
-// import { AddBookComponent } from './components/admin/add-book/add-book.component';
-// import { EditBookComponent } from './components/admin/edit-book/edit-book.component';
-// import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
+import { HomeBookComponent } from './components/admin/home-book/home-book.component';
+import { AddBookComponent } from './components/admin/add-book/add-book.component';
+import { EditBookComponent } from './components/admin/edit-book/edit-book.component';
+import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
 // import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
@@ -32,10 +32,10 @@ const routes: Routes = [
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
   { path: "admin", component: HomeAdminComponent },
-  // { path: "adminBooks", component: HomeBookComponent },
-  // { path: "addBook", component: AddBookComponent },
-  // { path: "editBook/:bookId", component: EditBookComponent },
-  // { path: "chart", component: LineChartComponent }
+  { path: "adminBooks", component: HomeBookComponent },
+  { path: "addBook", component: AddBookComponent },
+  { path: "editBook/:bookId", component: EditBookComponent },
+  { path: "chart", component: LineChartComponent }
 
 
 ];

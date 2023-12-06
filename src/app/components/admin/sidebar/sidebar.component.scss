@@ -2,9 +2,19 @@
     width: 250px;
     background: white;
     padding: 20px;
-    height: 10%;
-    position: fixed;
-    top: 50px;
+    height: 100%; // database issue here
+    //position: fixed;
+    top: 20px;
+    position: absolute;
+    //top: 0;
+    left: 0;
+    z-index: 1;
+    /* Ensure the sidebar is behind the button */
+    transition: transform 0.3s ease;
+}
+
+.sidebar-hidden .sidebar {
+    transform: translateX(-100%);
 }
 
 .sidebar-menu {
@@ -15,6 +25,7 @@
 
 .sidebar-item {
     padding: 7px 2px;
+    margin-top: -25px;
 }
 
 .sidebar-link {
@@ -24,6 +35,10 @@
     font-weight: bold;
     font-size: 1.8rem;
     margin-bottom: 0.7rem;
+    img {
+        content: url("./menu4.png");
+        max-width: 25px;
+    }
 }
 
 .submenu {
@@ -53,7 +68,80 @@
     display: block;
     text-decoration: none;
     color: #666;
-    padding-left: 20px;
+    padding-left: 0px;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+a {
+    background-image: linear-gradient(to right,
+            #54b3d6,
+            #54b3d6 50%,
+            #000 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+a:before {
+    content: '';
+    background: #54b3d6;
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    transition: all 0.3s ease-in-out;
+}
+
+a:hover {
+    background-position: 0;
+}
+
+a:hover::before {
+    width: 100%;
+}
+
+.container {
+    position: relative;
+    //overflow: hidden;
+    transition: height 0.3s ease;
+}
+
+.toggle-button {
+    margin-top: 0px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background-color: #ffffff;
+    //color: #fff;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    top: 10px;
+    /* Adjust top position as needed */
+    left: 20px;
+    /* Adjust left position as needed */
+    z-index: 2;
+    /* Ensure the button is above the sidebar */
+
+    img {
+        content: url("./menu4.png");
+        max-width: 25px;
+    }
+}
+
+.toggle-button:hover {
+    background-color: #2980b9;
+    /* Adjust hover color as needed */
 }
 
 .sidebar-item.active .submenu {
