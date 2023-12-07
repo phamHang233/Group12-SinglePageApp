@@ -13,6 +13,7 @@ router.route('/user/login').post(userController.loginUserControllerfn)
 router.route('/user/getOrders').post(userController.getAllOrdersOfUserControllerfn)
 
 router.route('/allBooks').get(bookController.getDataControllerfn)
+router.route('/createBooks').get(bookController.createBookControllerfn)
 
 router.route('/addr/getAddr/:userID').get(addrController.getDataControllerfn)
 
