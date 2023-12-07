@@ -1,3 +1,4 @@
+const orderModel = require('../order/orderModel');
 const userModel = require('./userModel')
 
 module.exports.getDataFromDBService = () => {
@@ -7,7 +8,7 @@ module.exports.getDataFromDBService = () => {
                 resolve(result);
             })
             .catch(error => {
-                reject(false);
+                reject(error);
             });
     });
 };
@@ -28,12 +29,12 @@ module.exports.createUserDBService = (userDetails) => {
 
                 userModelData.save().then(result => {
                     console.log("Lưu dữ liệu thành công!")
-                    resolve(result);
+                    resolve({ status: true, msg: "Đăng kí thành công" });
                 })
                     .catch(error => {
                         console.log("Lưu dữ liệu thất bại!")
 
-                        reject(false);
+                        reject(error);
                     });
             }
         })
@@ -47,7 +48,7 @@ module.exports.loginUserDBService = (userDetails) => {
                 if (result != undefined && result != null) {
 
                     if (result.password == userDetails.password) {
-                        resolve({ status: true, msg: "Đăng nhập thành công",cusId: result })
+                        resolve({ status: true, msg: "Đăng nhập thành công", cusId: result })
                     }
                     else {
                         console.log("sai mkhau")
@@ -62,5 +63,17 @@ module.exports.loginUserDBService = (userDetails) => {
                 console.log(errValue)
                 reject({ status: false, msg: "Invalid Data" })
             })
+    })
+}
+
+module.exports.getAllOrdersOfUser = (userDetails) => {
+    return new Promise((resolve, reject) => {
+        orderModel.find({customer_id: userDetails.cusId})
+            .then(result => {
+                resolve(result);
+            })
+            .catch(error => {
+                reject(error);
+            });
     })
 }

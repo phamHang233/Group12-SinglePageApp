@@ -10,12 +10,14 @@ const reviewController = require('../src/review/reviewController')
 router.route('/user/getAll').get(userController.getDataControllerfn)
 router.route('/user/addUser').post(userController.createUserControllerfn)
 router.route('/user/login').post(userController.loginUserControllerfn)
+router.route('/user/getOrders').post(userController.getAllOrdersOfUserControllerfn)
 
 router.route('/allBooks').get(bookController.getDataControllerfn)
 
 router.route('/addr/getAddr/:userID').get(addrController.getDataControllerfn)
 
 router.route('/order').get(orderController.getDataControllerfn)
+router.route('/order/add').post(orderController.createOrderControllerfn)
 
 router.route('/review').get(reviewController.getDataControllerfn)
 
