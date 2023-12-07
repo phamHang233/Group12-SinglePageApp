@@ -26,7 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { PopupCartComponent } from './components/cart/popup-cart/popup-cart.component';
 import { FinishedComponent } from './components/checkout/finished/finished.component';
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
-import { RegisterComponent } from './components/admin/register/register.component';
+import { RegisterComponent } from './components/auth/register/register.component';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
