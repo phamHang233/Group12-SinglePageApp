@@ -33,7 +33,6 @@ module.exports.createUserDBService = (userDetails) => {
                 })
                     .catch(error => {
                         console.log("Lưu dữ liệu thất bại!")
-
                         reject(error);
                     });
             }

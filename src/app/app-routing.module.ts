@@ -8,6 +8,7 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
 import { SearchNameComponent } from './components/search-name/search-name.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { RegisterComponent } from './components/admin/register/register.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: "contact", component: ContactComponent },
   // { path: "product", component: ProductComponent },
   // { path: "login", component: LoginComponent },
-  // { path: "register", component: RegisterComponent },
+  { path: "register", component: RegisterComponent },
   { path: "book/details/:bookId", component: BookDetailComponent },
   { path: "search/:bookName", component: SearchNameComponent },
   { path: "cart", component: CartComponent },

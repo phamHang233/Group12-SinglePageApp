@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   register(data: any) {
-    return this.httpClient.post(this.apiUrl + 'user/create', data)
+    return this.httpClient.post(this.apiUrl + 'user/addUser', data)
   }
   logout() {
     // remove user from local storage to log user out
