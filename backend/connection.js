@@ -5,7 +5,7 @@ var routes = require('./routes/routes.js');
 const cors = require('cors');
 
 // connect to mongo
-mongoose.connect('mongodb+srv://hanguyenduc2002:hadimsctn011858@acabook.hsbjd28.mongodb.net/', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb+srv://hanguyenduc2002:hadimsctn011858@acabook.hsbjd28.mongodb.net/')
     .then(() => {
         console.log("Kết nối thành công đến MongoDB");
     })
