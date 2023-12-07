@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   submitted = false;
-  dataLoaded = false;
-
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,21 +38,16 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    //console.log("Register");
     this.submitted = true;
 
     if (this.registerForm.valid) {
       const userReg = this.registerForm.value;
       userReg.role = "user";
-      //console.log(userReg)
 
       this.authService.register(userReg).subscribe(
         ((response: any) => {
-          //console.log(response);
-          if (response['status'] == true){
+          if (response.status) {
             this.toasterService.success("Đăng ký thành công!");
-            //localStorage.setItem("user", JSON.stringify(userReg))
-            this.dataLoaded = true;
             this.authService.onRefresh();
             this.router.navigate(['/']);
           }

@@ -5,7 +5,6 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 
 import { User } from '../models/userModel';
-import { LoginModel } from '../models/loginModel';
 
 
 @Injectable({
@@ -42,14 +41,19 @@ export class AuthService {
       return false
     }
   }
-  login(loginModel: LoginModel) {
+  /*login(loginModel: LoginModel) {
     return this.httpClient.post(this.apiUrl + 'user/login', loginModel);
     // return this.httpClient.get<Array<User>>(this.apiUrl + 'register?email=' + loginModel.email);
+  }*/
+
+  login(data: any) {
+    return this.httpClient.post(this.apiUrl + 'user/login', data);
   }
 
   register(data: any) {
     return this.httpClient.post(this.apiUrl + 'user/addUser', data)
   }
+
   logout() {
     // remove user from local storage to log user out
     this.localStorage.clear()

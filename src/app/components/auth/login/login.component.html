@@ -1,0 +1,36 @@
+<p>login works!</p>
+<app-nav></app-nav>
+<div class="wrapper fadeInDown zero-raduis">
+    <div id="formContent">
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <h2 class="my-5">Đăng nhập</h2>
+        </div>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm">
+            <input formControlName="email" type="email" id="email" class="fadeIn second zero-raduis" name="email"
+                placeholder="name@example.com">
+
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['email'].hasError('required')">Email không được để trống</div>
+            </div>
+
+            <input formControlName="password" type="password" id="password" class="fadeIn third zero-raduis"
+                name="login" placeholder="password">
+
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['password'].hasError('required')">Mật khẩu không được để trống</div>
+            </div>    
+            <!-- <div id="formFooter">
+                <a class="underlineHover">Quên mật khẩu</a>
+            </div> 
+            <input (click)="login()" type="submit" routerLinkActive="router-link-active" 
+                class="fadeIn fourth zero-raduis" value="Đăng nhập">-->
+            <input (click)="login()" type="submit" class="fadeIn fourth zero-raduis" value="Đăng nhập">
+            <h2>Bạn chưa có tài khoản?</h2>
+            <input routerLink="/register" type="button" class="fadeIn fourth zero-raduis pc" value="Đăng ký">
+        </form>
+
+    </div>
+</div>
