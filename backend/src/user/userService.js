@@ -21,8 +21,8 @@ module.exports.createUserDBService = (userDetails) => {
             }
             else {
                 var userModelData = new userModel()
-                userModelData.firstName = userDetails.firstName
-                userModelData.lastName = userDetails.lastName
+                userModelData.first_name = userDetails.firstName
+                userModelData.last_name = userDetails.lastName
                 userModelData.email = userDetails.email
                 userModelData.password = userDetails.password
                 userModelData.role = userDetails.role

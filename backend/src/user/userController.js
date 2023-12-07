@@ -28,7 +28,7 @@ var loginUserControllerfn = async (req, res) => {
         userService.loginUserDBService(req.body)
             .then(result => {
                 res.send(result)
-                console.log("oke")
+                console.log("ok")
             })
             .catch(error => {
 
