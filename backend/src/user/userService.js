@@ -48,7 +48,13 @@ module.exports.loginUserDBService = (userDetails) => {
                 if (result != undefined && result != null) {
 
                     if (result.password == userDetails.password) {
-                        resolve({ status: true, msg: "Đăng nhập thành công", cusId: result })
+                        resolve({ status: true, msg: "Đăng nhập thành công", information:{
+                            id: result._id,
+                            firstName: result.first_name,
+                            lastName: result.last_name,
+                            email: result.email,
+                            role: result.role
+                        } })
                     }
                     else {
                         console.log("sai mkhau")
