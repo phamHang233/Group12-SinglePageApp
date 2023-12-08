@@ -21,8 +21,8 @@ module.exports.createUserDBService = (userDetails) => {
             }
             else {
                 var userModelData = new userModel()
-                userModelData.firstName = userDetails.firstName
-                userModelData.lastName = userDetails.lastName
+                userModelData.first_name = userDetails.firstName
+                userModelData.last_name = userDetails.lastName
                 userModelData.email = userDetails.email
                 userModelData.password = userDetails.password
                 userModelData.role = userDetails.role
@@ -33,7 +33,6 @@ module.exports.createUserDBService = (userDetails) => {
                 })
                     .catch(error => {
                         console.log("Lưu dữ liệu thất bại!")
-
                         reject(error);
                     });
             }
@@ -43,9 +42,8 @@ module.exports.createUserDBService = (userDetails) => {
 
 module.exports.loginUserDBService = (userDetails) => {
     return new Promise((resolve, reject) => {
-        userModel.findOne({ email: userDetails.email })
-            .then(result => {
-                if (result != undefined && result != null) {
+        userModel.findOne({ email: userDetails.email }).then(result => {
+            if (result != undefined && result != null) {
 
                     if (result.password == userDetails.password) {
                         resolve({ status: true, msg: "Đăng nhập thành công", information:{

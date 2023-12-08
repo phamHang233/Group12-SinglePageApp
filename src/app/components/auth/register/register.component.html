@@ -1,0 +1,49 @@
+<app-nav></app-nav>
+<div class="wrapper fadeInDown zero-raduis">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+
+            <h2 class="my-5">Đăng ký</h2>
+        </div>
+
+        <!-- Register Form -->
+        <form [formGroup]="registerForm">
+            <input formControlName="firstName" type="text" id="firstName" class="fadeIn second zero-raduis"
+                name="firstName" placeholder="Tên">
+            
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['firstName'].hasError('required')">Tên không được để trống</div>
+            </div>
+            
+            <input formControlName="lastName" type="text" id="lastName" class="fadeIn second zero-raduis"
+                name="lastName" placeholder="Họ">
+            
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['lastName'].hasError('required')">Họ không được để trống</div>
+            </div>
+            
+            <input formControlName="email" type="email" id="email" class="fadeIn second zero-raduis" name="email"
+                placeholder="info@example.com">
+            
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['email'].hasError('required')">Email không được để trống</div>
+            </div>
+            
+            <input formControlName="password" type="password" id="password" class="fadeIn third zero-raduis"
+                name="register" placeholder="password">
+
+            <div *ngIf="submitted" class="invalid">
+                <div *ngIf="f['password'].hasError('required')">Mật khẩu không được để trống</div>
+                <div *ngIf="f['password'].hasError('minlength')">Mật khẩu phải chứa ít nhất 6 kí tự</div>
+            </div>
+            
+
+            <input (click)="register()" type="submit" class="fadeIn fourth zero-raduis" value="Đăng ký">
+            <h2>Bạn đã có tài khoản?</h2>
+            <input routerLink="/login" type="button" class="fadeIn fourth zero-raduis pc" value="Đăng nhập">
+        </form>
+    </div>
+</div>
