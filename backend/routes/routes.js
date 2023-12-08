@@ -15,9 +15,9 @@ router.route('/user/getOrders').post(userController.getAllOrdersOfUserController
 router.route('/allBooks').get(bookController.getDataControllerfn)
 router.route('/createBooks').get(bookController.createBookControllerfn)
 router.route('/books/update/:id').put(bookController.updateBookControllerfn)
-router.route('/books/:id').get(bookController.getBookByIDController)
+router.route('/books/:id').post(bookController.getBookByIDController)
 router.delete('/books/delete/:id', bookController.deleteBookController)
-router.route('/books/name').get(bookController.getBooksByNameController)
+router.route('/books/name').post(bookController.getBooksByNameController)
 
 router.route('/addr/getAddr/:userID').get(addrController.getDataControllerfn)
 

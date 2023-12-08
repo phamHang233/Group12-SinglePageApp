@@ -1,3 +1,4 @@
+const { error } = require('jquery');
 var bookModel = require('./bookModel')
 
 module.exports.getDataFromDBService = () => {
@@ -37,7 +38,7 @@ module.exports.createBookDBService = (bookDetails) => {
 
 module.exports.getBooksByName = (search_key) => {
     return new Promise((resolve, reject) => {
-        bookModel.find({ bookName: { $regex: search_key, $options: 'i' } })
+        bookModel.find({ bookName: search_key })
             .then(result => {
                 resolve(result);
             })
@@ -59,20 +60,29 @@ module.exports.getBookByID = (id) => {
 }
 module.exports.deleteBookDBService = (id) => {
     return new Promise((resolve, reject) => {
-        bookModel.findByIdAndRemove(id, { useFindAndModify: false })
+        bookModel.deleteOne({_id:id})
             .then(result => {
                 resolve(result)
                 console.log("ok")
             })
             .catch(error => {
                 reject(false);
-                console.log("fail")
+                console.log(error)
             })
     })
 }
-module.exports.updateBookDBService = (id, bookDetails) => {
+module.exports.updateBookDBService = (bookDetails) => {
     return new Promise((resolve, reject) => {
-        bookModel.findByIdAndUpdate(id, bookDetails, { useFindAndModify: false })
+        bookModel.findByIdAndUpdate(bookDetails._id, {
+            bookName:bookDetails.bookName,
+            category:bookDetails.category,
+            star:bookDetails.star,
+            author:bookDetails.author,
+            dailyPrice:bookDetails.dailyPrice,
+            salePrice:bookDetails.salePrice,
+            description: bookDetails.description,
+            imagePath:bookDetails.imagePath
+        })
             .then(result => {
                 resolve(result)
                 console.log("lưu DL thành công")

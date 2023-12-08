@@ -24,13 +24,18 @@ var createBookControllerfn = async (req, res) => {
 }
 
 const getBooksByNameController = async (req, res) => {
-    var search_key = req.params.bookName;
-    var filteredBooks = await bookService.getBooksByName(search_key);
-    res.send(filteredBooks);
+    var search_key = req.body.bookName;
+    console.log(search_key);
+    bookService.getBooksByName(search_key).then(result => {
+        res.send(result)
+    })
+        .catch(error => {
+            res.send(error)
+        })
 };
 
 const getBookByIDController = async (req, res) => {
-    var id = req.params.id;
+    var id = req.body.id
     bookService.getBookByID(id).then(result => {
         res.send(result)
     })
@@ -47,21 +52,19 @@ const updateBookControllerfn = async (req, res) => {
         });
     }
 
-    const id = req.params.id;
-    console.log(req.body)
 
-    bookService.updateBookDBService(id, req.body)
+    bookService.updateBookDBService(req.body)
 
         .then(result => {
             res.send({ 'status': true, "message": "Cap nhat san pham thanh cong " })
         })
         .catch(error => {
             res.send({ 'status': false, "message": "Cap nhat san pham that bai " })
-            console.log("fail")
+            console.log(error)
         })
 }
 const deleteBookController = async (req, res) => {
-    var id = req.params.id;
+    var id = req.body.id;
     console.log(id)
     bookService.deleteBookDBService(id)
         .then(result => {
@@ -70,7 +73,7 @@ const deleteBookController = async (req, res) => {
         })
         .catch(error => {
             res.send({ 'status': false, "message": "Xoa san pham that bai " })
-
+            console.log(error)
         })
 }
 module.exports = { getDataControllerfn,createBookControllerfn,getBooksByNameController,getBookByIDController,updateBookControllerfn,deleteBookController}
