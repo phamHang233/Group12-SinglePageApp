@@ -41,24 +41,37 @@ export class HomeComponent implements OnInit {
   constructor(
     private bookService: BookService,
   ) { }
+
   ngOnInit(): void {
-    this.getBooksBestSeller();
+    this.getAllBook();
+    //this.getBooksBestSeller();
     this.currentPage = 1;
   }
+
   getBooksBestSeller() {
     this.bookService.getBooksBestSeller().subscribe(response => {
       this.booksBestSeller = response;
       this.dataLoaded = true;
     })
   };
+
   showPage1() {
     this.currentPage = 1;
   }
+
   showPage2() {
     this.currentPage = 2;
   }
+
   showPage3() {
     this.currentPage = 3;
+  }
+
+  getAllBook(){
+    console.log("Get all books");
+    this.bookService.getBooks().subscribe(response => {
+      console.log(response);
+    });
   }
 }
 

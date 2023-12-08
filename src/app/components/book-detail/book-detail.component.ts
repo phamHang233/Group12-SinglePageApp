@@ -15,13 +15,12 @@ export class BookDetailComponent {
 
   book!: Book;
   reviews!: Array<Review>;
-  // bookImages: BookImage[] = [];
-  // currentImage!: BookImage;
+
   dataLoaded = false;
   imageUrl = "http://localhost:3000/"
 
-  constructor(private bookService: BookService,
-    // private bookImageService: BookImageService,
+  constructor(
+    private bookService: BookService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private router: Router,
@@ -32,7 +31,7 @@ export class BookDetailComponent {
     this.activatedRoute.params.subscribe(params => {
       if (params["bookId"]) {
         this.getBookDetail(params["bookId"])
-        this.getReview(params["bookId"])
+        //this.getReview(params["bookId"])
       }
 
     })
@@ -53,8 +52,8 @@ export class BookDetailComponent {
 
   getBookDetail(bookId: string): void {
     this.bookService.getBookById(bookId).subscribe({
-      next: (response: Book) => {
-        this.book = response;
+      next: (response: any) => {
+        this.book = response.book;
         this.dataLoaded = true;
       },
       error: (error: any) => {

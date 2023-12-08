@@ -14,6 +14,7 @@ router.route('/user/getOrders').post(userController.getAllOrdersOfUserController
 
 router.route('/allBooks').get(bookController.getDataControllerfn)
 router.route('/createBooks').get(bookController.createBookControllerfn)
+router.route('/books/:bookId').get(bookController.getBookDBbyIDControllerfn)
 
 router.route('/addr/getAddr/:userID').get(addrController.getDataControllerfn)
 

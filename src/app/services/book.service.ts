@@ -22,9 +22,9 @@ export class BookService {
     return this.httpClient.get<Array<Book>>(url)
   }
 
-  getBookById(bookId: string): Observable<Book> {
+  getBookById(bookId: string): Observable<any> {
     let newPath = this.apiUrl + "books/" + bookId
-    return this.httpClient.get<Book>(newPath);
+    return this.httpClient.get(newPath);
   }
 
   addBook(data: any): Observable<any> {

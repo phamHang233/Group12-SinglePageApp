@@ -23,4 +23,21 @@ var createBookControllerfn = async (req, res) => {
     }
 }
 
-module.exports = { getDataControllerfn,createBookControllerfn }
+var getBookDBbyIDControllerfn = async (req, res) => {
+    try {
+        //console.log(req)
+        bookService.getBookDBbyIDService(req.params.bookId)
+            .then(result => {
+                res.send(result)
+                console.log("oke")
+            })
+            .catch(error => {
+                res.send(error)
+            })
+    }
+    catch (error) {
+        console.error();
+    }
+}
+
+module.exports = { getDataControllerfn, createBookControllerfn, getBookDBbyIDControllerfn}
