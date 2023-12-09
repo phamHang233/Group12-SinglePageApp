@@ -217,11 +217,14 @@
     border: none;
     align-items: center;
     justify-items: center;
-    
+
 }
+
 .btn-item-1:hover {
-    background-color: #800000; /* Replace with your desired darker color */
+    background-color: #800000;
+    /* Replace with your desired darker color */
 }
+
 a:hover {
     cursor: pointer;
 }
@@ -260,3 +263,19 @@ a:hover {
 a:hover::before {
     width: 100%;
 }
+
+// /* Success style */
+// .success-snackbar {
+//     background-color: #4caf50 !important;
+//     /* Green background color for success */
+//     color: #fff !important;
+//     /* White text color for success */
+// }
+
+// /* Failure style */
+// .failure-snackbar {
+//     background-color: #f44336 !important;
+//     /* Red background color for failure */
+//     color: #fff !important;
+//     /* White text color for failure */
+// }

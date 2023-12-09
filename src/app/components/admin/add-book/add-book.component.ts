@@ -1,16 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
+import { MatSnackBar, MatSnackBarConfig,  } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-book',
   templateUrl: './add-book.component.html',
-  styleUrls: ['./add-book.component.css']
+  styleUrls: ['./add-book.component.scss'],
+  // styles: [`
+  //   :host ::ng-deep .success-snackbar {
+  //     background-color: green;
+  //     color: white;
+  //   }
+
+  //   :host ::ng-deep .failure-snackbar {
+  //     background-color: red;
+  //     color: white;
+  //   }
+  // `],
+  // encapsulation: ViewEncapsulation.None, // Use ViewEncapsulation.None to allow ::ng-deep
 })
 export class AddBookComponent implements OnInit {
   bookFormCreate!: FormGroup;
@@ -25,14 +38,24 @@ export class AddBookComponent implements OnInit {
 
     private toasterService: ToastrService,
     private httpClient: HttpClient,
+    private snackBar: MatSnackBar,
 
   ) {
 
   }
   ngOnInit(): void {
     this.createBookForm();
+    //this.openSnackBar('Operation successful', 'success-snackbar');
   }
 
+  openSnackBar(message: string, panelClass: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000, // Duration in milliseconds (e.g., 3000 for 3 seconds)
+      panelClass: [panelClass], // Panel class
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
+    });
+  }
   createBookForm() {
     this.bookFormCreate = this.formBuilder.group({
       bookName: ["", Validators.required],
@@ -63,11 +86,17 @@ export class AddBookComponent implements OnInit {
       this.bookService.addBook(this.bookFormCreate.value).subscribe(response => {
 
         if (response.status) {
-          this.toasterService.success('Thêm sản phẩm thành công');
+          this.openSnackBar('Thêm sản phẩm thành công', 'success-snackbar');
+          // this.snackBar.openFromComponent(successComponent, {
+          //   duration: 3000,
+          // });
           this.router.navigate(['/adminBooks'])
         }
         else
-          this.toasterService.error('Thêm sản phẩm thất bại');
+        this.openSnackBar('Thêm sản phẩm thất bại', 'failure-snackbar');
+        // this.snackBar.openFromComponent(failedComponent, {
+        //   duration: 3000,
+        // });
       });
 
     }
@@ -78,3 +107,24 @@ export class AddBookComponent implements OnInit {
 
   }
 }
+
+// @Component({
+//   selector: 'success',
+//   templateUrl: 'success.html',
+//   styles: [`
+//     .success {
+//       color: green !important;
+//     }
+//   `],
+// })
+// export class successComponent {}
+// @Component({
+//   selector: 'failed',
+//   templateUrl: 'failed.html',
+//   styles: [`
+//     .success {
+//       color: green !important;
+//     }
+//   `],
+// })
+// export class failedComponent {}

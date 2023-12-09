@@ -34,6 +34,9 @@ import { EditBookComponent } from './components/admin/edit-book/edit-book.compon
 import { HomeBookComponent } from './components/admin/home-book/home-book.component';
 import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
 import { StatisticComponent } from './components/admin/statistic/statistic.component';
+
+import { NotifierModule } from 'angular-notifier';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -84,6 +87,9 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       }
     }),
+
+    NotifierModule,
+    MatSnackBarModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

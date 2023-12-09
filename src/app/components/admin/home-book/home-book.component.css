@@ -13,6 +13,20 @@
     color: var(--primary-color);
 }
 
+a.header__top-link{
+    background-image: linear-gradient(to right,
+            #54b3d6,
+            #54b3d6 50%,
+            #ffffff 50%);
+    background-size: 200% 100%;
+    background-position: -100%;
+    /* display: inline-block; */
+    padding: 5px 0px;
+    position: relative;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.3s ease-in-out;
+}
 .header__top {
     height: 60px;
     display: flex;
@@ -134,11 +148,11 @@ a {
     background-image: linear-gradient(to right,
             #54b3d6,
             #54b3d6 50%,
-            #ffffff 50%);
+            #000000 50%);
     background-size: 200% 100%;
     background-position: -100%;
-    display: inline-block;
-    padding: 5px 0;
+    /* display: inline-block; */
+    padding: 5px 0px 40px ;
     position: relative;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -163,4 +177,4 @@ a:hover {
 
 a:hover::before {
     width: 100%;
-}
+} 

@@ -297,20 +297,3 @@ a:hover {
 a:hover::before {
     width: 100%;
 }
-
-.highlight-box {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background-color: yellow;
-    /* Highlight color */
-    z-index: -1;
-    transition: width 0.3s ease;
-}
-
-.active {
-    color: blue;
-    /* Change color of active link */
-}
