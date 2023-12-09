@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Book } from 'src/app/models/book';
 import { AuthService } from 'src/app/services/auth.service';
 import { BookService } from 'src/app/services/book.service';
+import { MatSnackBar, MatSnackBarConfig,  } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-edit-book',
@@ -25,6 +26,8 @@ export class EditBookComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private toasterService: ToastrService,
+    private snackBar: MatSnackBar,
+
   ) {
 
   }
@@ -37,6 +40,15 @@ export class EditBookComponent implements OnInit {
 
     })
 
+  }
+
+  openSnackBar(message: string, panelClass: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000, // Duration in milliseconds (e.g., 3000 for 3 seconds)
+      panelClass: [panelClass], // Panel class
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
+    });
   }
 
   createLoginForm() {
@@ -69,7 +81,7 @@ export class EditBookComponent implements OnInit {
     console.log(this.bookFormEdit.value)
     this.bookService.updateBook(this.book._id, this.bookFormEdit.value).subscribe(
       response => {
-        this.toasterService.success('Cập nhật thành công')
+        this.openSnackBar('Cập nhật thành công', 'success-snackbar');
         // console.log(this.book)
         this.router.navigate(['/adminBooks'])
       },
