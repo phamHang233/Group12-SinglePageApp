@@ -45,22 +45,28 @@ module.exports.loginUserDBService = (userDetails) => {
         userModel.findOne({ email: userDetails.email }).then(result => {
             if (result != undefined && result != null) {
 
-                if (result.password == userDetails.password) {
-                    resolve({ status: true, msg: "Đăng nhập thành công", user: result })
+                    if (result.password == userDetails.password) {
+                        resolve({ status: true, msg: "Đăng nhập thành công", information:{
+                            id: result._id,
+                            firstName: result.first_name,
+                            lastName: result.last_name,
+                            email: result.email,
+                            role: result.role
+                        } })
+                    }
+                    else {
+                        console.log("sai mkhau")
+                        reject({ status: false, msg: "Sai mật khẩu" })
+                    }
                 }
                 else {
-                    console.log("sai mkhau")
-                    reject({ status: false, msg: "Sai mật khẩu" })
+                    reject({ status: false, msg: "Người dùng không tồn tại" })
                 }
-            }
-            else {
-                reject({ status: false, msg: "Người dùng không tồn tại" })
-            }
-        })
-        .catch(errValue => {
-            console.log(errValue)
-            reject({ status: false, msg: "Invalid Data" })
-        })
+            })
+            .catch(errValue => {
+                console.log(errValue)
+                reject({ status: false, msg: "Invalid Data" })
+            })
     })
 }
 

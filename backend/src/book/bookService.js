@@ -1,6 +1,5 @@
 const { error } = require('jquery');
-const bookModel = require('./bookModel');
-var bookService = require('./bookModel');
+var bookModel = require('./bookModel')
 
 module.exports.getDataFromDBService = () => {
     return new Promise((resolve, reject) => {
@@ -25,10 +24,9 @@ module.exports.createBookDBService = (bookDetails) => {
         bookModelData.salePrice = bookDetails.salePrice
         bookModelData.description = bookDetails.description
         bookModelData.imagePath = bookDetails.imagePath
-        console.log("aa");
         bookModelData.save().then(result => {
             console.log("Lưu dữ liệu thành công!")
-            resolve(result);
+            resolve(true);
         })
             .catch(error => {
                 console.log("Lưu dữ liệu thất bại!", error)
@@ -38,23 +36,59 @@ module.exports.createBookDBService = (bookDetails) => {
     })
 }
 
-module.exports.getBookDBbyIDService = (bookId) => {
+module.exports.getBooksByName = (search_key) => {
     return new Promise((resolve, reject) => {
-        console.log(bookId);
-        bookModel.findById(bookId).then(result => {
-            console.log(result)
-            if (result != undefined && result != null){
-                console.log("Lấy dữ liệu thành công!")
-                resolve({status: true, msg: "Lấy dữ liệu thành công", book: result})
-            }
-            else {
-                console.log("Lấy dữ liệu thất bại!")
-                reject({status: false, msg: "Lấy dữ liệu thất bại"});
-            }
-        }).
-        catch(error => {
-            console.log("Lấy dữ liệu thất bại!", error)
-            reject(false);
+        bookModel.find({ bookName: search_key })
+            .then(result => {
+                resolve(result);
+            })
+            .catch(error => {
+                reject(false);
+            });
+    });
+};
+module.exports.getBookByID = (id) => {
+    return new Promise((resolve, reject) => {
+        bookModel.findById(id)
+            .then(result => {
+                resolve(result)
+            })
+            .catch(error => {
+                reject(false);
+            })
+    })
+}
+module.exports.deleteBookDBService = (id) => {
+    return new Promise((resolve, reject) => {
+        bookModel.deleteOne({_id:id})
+            .then(result => {
+                resolve(result)
+                console.log("ok")
+            })
+            .catch(error => {
+                reject(false);
+                console.log(error)
+            })
+    })
+}
+module.exports.updateBookDBService = (bookDetails) => {
+    return new Promise((resolve, reject) => {
+        bookModel.findByIdAndUpdate(bookDetails._id, {
+            bookName:bookDetails.bookName,
+            category:bookDetails.category,
+            star:bookDetails.star,
+            author:bookDetails.author,
+            dailyPrice:bookDetails.dailyPrice,
+            salePrice:bookDetails.salePrice,
+            description: bookDetails.description,
+            imagePath:bookDetails.imagePath
         })
+            .then(result => {
+                resolve(result)
+                console.log("lưu DL thành công")
+            })
+            .catch(error => {
+                reject(false);
+            })
     })
 }
