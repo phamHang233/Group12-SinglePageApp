@@ -41,7 +41,6 @@ export class BookDetailComponent {
       (response) => {
         this.reviews = response;
         console.log(this.reviews)
-
       },
       (error) => {
         console.error('Error occurred while getting book detail:', error);
@@ -51,9 +50,10 @@ export class BookDetailComponent {
   }
 
   getBookDetail(bookId: string): void {
+    console.log(bookId);
     this.bookService.getBookById(bookId).subscribe({
       next: (response: any) => {
-        this.book = response.book;
+        this.book = response;
         this.dataLoaded = true;
       },
       error: (error: any) => {

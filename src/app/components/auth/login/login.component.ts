@@ -46,12 +46,14 @@ export class LoginComponent implements OnInit {
         (response: any) => {
           if (response.status) {
             this.toasterService.success("Đăng nhập thành công!");
-            localStorage.setItem("user", JSON.stringify(response.user));
+            //console.log(response);
+            localStorage.setItem("user", JSON.stringify(response.information));
             this.authService.onRefresh();
-            if (response.user.role == "user") {
+            
+            if (response.information.role == "user") {
               this.router.navigate(['/']);
             }
-            else if (response.user.role == "admin") {
+            else if (response.information.role == "admin") {
               this.router.navigate(['/admin'])
             }
           }

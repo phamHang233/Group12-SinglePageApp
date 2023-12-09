@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Book } from 'src/app/models/bookModel';
 import { BookService } from 'src/app/services/book.service';
+import { OrderService } from 'src/app/services/order.service';
+//import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -37,13 +39,18 @@ export class HomeComponent implements OnInit {
   }
   currentPage!: number;
   booksBestSeller: Array<Book> = new Array<Book>();
+  allBooks: Array<Book> = new Array<Book>();
   dataLoaded = false;
   constructor(
     private bookService: BookService,
+    private orderService: OrderService
+    //private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    //this.authService.logout();
     this.getAllBook();
+    this.getAllOrder();
     //this.getBooksBestSeller();
     this.currentPage = 1;
   }
@@ -70,6 +77,14 @@ export class HomeComponent implements OnInit {
   getAllBook(){
     console.log("Get all books");
     this.bookService.getBooks().subscribe(response => {
+      this.allBooks = response;
+      console.log(this.allBooks);
+    });
+  }
+
+  getAllOrder(){
+    console.log("Get all orders");
+    this.orderService.getAllOrder().subscribe(response => {
       console.log(response);
     });
   }

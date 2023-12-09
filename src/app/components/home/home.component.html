@@ -90,6 +90,7 @@
 
     <!-- <button  id="myBtn-scroll" title="Go to top" [class]="topFunction()"><i class="fas fa-chevron-up"></i></button> -->
     <!-- bestselling product -->
+    <!--
     <section class="bestselling">
         <div class="container">
             <div class="row">
@@ -148,6 +149,7 @@
         </div>
 
     </section>
+    -->
 
     <!-- end bestselling product -->
 
@@ -191,17 +193,19 @@
                     </nav>
 
 
-
+                    <!--
                     <div class="product__sidebar-img-wrap">
-                        <!-- <img src="assets/images1/product/Demon Slayer_ Kimetsu no Yaiba - Assista na Crunchyroll.png" width="255" height="350" alt=""> -->
+                        <img src="assets/images1/product/Demon Slayer_ Kimetsu no Yaiba - Assista na Crunchyroll.png" width="255" height="350" alt="">
                         <video width="255" height="300" controls>
                             <source src="assets/video/contra.st_1629123780_musicaldown.com.mp4" type="video/mp4">
                         </video>
-                        <!-- <img src="assets/images/banner_7.jpg" alt="" class="product__sidebar-img"> -->
+                        <img src="assets/images/banner_7.jpg" alt="" class="product__sidebar-img">
                     </div>
+                    -->
                 </aside>
 
                 <article class="product__content col-lg-9 col-md-12 col-sm-12">
+                    <!--
                     <nav class="row">
                         <ul class="product__list hide-on-mobile">
                             <li class="product__item " [class.active]="currentPage == 1">
@@ -216,11 +220,44 @@
                             </li>
 
                         </ul>
-
                     </nav>
+                    -->
+
                     <div *ngIf="currentPage ==1">
                         <div class="row product__panel">
+                            <div class="product__panel-item col-lg-3 col-md-4 col-sm-6" *ngFor="let book of allBooks">
+                                <div class="product__panel-item-wrap">
+                                    <div class="product__panel-img-wrap">
+                                        <img src="{{book.imagePath}}" alt=""
+                                            class="product__panel-img">
+                                    </div>
+                                    <h3 class="product__panel-heading">
+                                        <a routerLink="/book/details/{{book._id}}" class="product__panel-link">{{book.bookName}}</a>
+                                    </h3>
+                                    <div class="product__panel-rate-wrap">
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                        <i class="fas fa-star product__panel-rate"></i>
+                                    </div>
 
+                                    <div class="product__panel-price">
+                                        <span class="product__panel-price-old">
+                                            {{book.dailyPrice.toLocaleString()}}
+                                        </span>
+                                        <span class="product__panel-price-current">
+                                            {{book.salePrice.toLocaleString()}}
+                                        </span>
+                                    </div>
+                                    <!--
+                                    <div class="product__panel-price-sale-off">
+                                        -11%
+                                    </div>
+                                    -->
+                                </div>
+                            </div>
+                            <!--
                             <div class="product__panel-item col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__panel-item-wrap">
                                     <div class="product__panel-img-wrap">
@@ -465,8 +502,9 @@
                                 </div>
 
                             </div>
-
+                            -->
                         </div>
+                        
                     </div>
                     <div *ngIf="currentPage ==2">
                         <div class="row product__panel">
@@ -734,6 +772,7 @@
     <!--end product -->
 
     <!-- product love -->
+    <!--
     <section class="product__love">
         <div class="container">
             <div class="row bg-white">
@@ -903,6 +942,7 @@
             </div>
         </div>
     </section>
+    -->
     <!--end product love -->
 
     <!-- post -->

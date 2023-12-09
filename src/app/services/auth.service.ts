@@ -56,6 +56,7 @@ export class AuthService {
 
   logout() {
     // remove user from local storage to log user out
+    console.log("Log out");
     this.localStorage.clear()
     this.userSubject.next(null)
     this.onRefresh();
