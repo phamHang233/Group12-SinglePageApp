@@ -1,4 +1,8 @@
+
+const orderModel = require('../order/orderModel');
 const userModel = require('./userModel')
+
+
 module.exports.getDataFromDBService = () => {
     return new Promise((resolve, reject) => {
         userModel.find({})
@@ -6,19 +10,51 @@ module.exports.getDataFromDBService = () => {
                 resolve(result);
             })
             .catch(error => {
-                reject(false);
+                reject(error);
             });
     });
 };
+module.exports.createUserDBService = (userDetails) => {
+    return new Promise((resolve, reject) => {
+        userModel.findOne({ email: userDetails.email }).then(result => {
+            if (result != undefined && result != null) {
+                console.log("Email đã tồn tại")
+                resolve({ status: false, msg: "Email đã tồn tại" })
+            }
+            else {
+                var userModelData = new userModel()
+                userModelData.first_name = userDetails.firstName
+                userModelData.last_name = userDetails.lastName
+                userModelData.email = userDetails.email
+                userModelData.password = userDetails.password
+                userModelData.role = userDetails.role
+
+                userModelData.save().then(result => {
+                    console.log("Lưu dữ liệu thành công!")
+                    resolve({ status: true, msg: "Đăng kí thành công" });
+                })
+                    .catch(error => {
+                        console.log("Lưu dữ liệu thất bại!")
+                        reject(error);
+                    });
+            }
+        })
+    })
+}
 
 module.exports.loginUserDBService = (userDetails) => {
     return new Promise((resolve, reject) => {
-        userModel.findOne({ email: userDetails.email })
-            .then(result => {
-                if (result != undefined && result != null) {
+        userModel.findOne({ email: userDetails.email }).then(result => {
+            if (result != undefined && result != null) {
 
                     if (result.password == userDetails.password) {
-                        resolve({ status: true, msg: result })
+                        resolve({ status: true, msg: "Đăng nhập thành công", information:{
+                            id: result._id,
+                            firstName: result.first_name,
+                            lastName: result.last_name,
+                            email: result.email,
+                            role: result.role
+                        } })
                     }
                     else {
                         console.log("sai mkhau")
@@ -35,23 +71,15 @@ module.exports.loginUserDBService = (userDetails) => {
             })
     })
 }
-module.exports.createUserDBService = (userDetails) => {
+
+module.exports.getAllOrdersOfUser = (userDetails) => {
     return new Promise((resolve, reject) => {
-        var userModelData = new userModel()
-        userModelData.firstName = userDetails.firstName
-        userModelData.lastName = userDetails.lastName
-        userModelData.email = userDetails.email
-        userModelData.password = userDetails.password
-        userModelData.role = userDetails.role
-
-        userModelData.save().then(result => {
-            console.log("Lưu dữ liệu thành công!")
-            resolve(result);
-        })
+        orderModel.find({customer_id: userDetails.cusId})
+            .then(result => {
+                resolve(result);
+            })
             .catch(error => {
-                console.log("Lưu dữ liệu thất bại!")
-
-                reject(false);
+                reject(error);
             });
     })
 }

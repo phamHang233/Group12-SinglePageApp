@@ -23,4 +23,7 @@ var userSchema = new Schema({
         require: true
     }
 })
-module.exports = mongoose.model('employees', userSchema)
+// <<<<<<< GiangNT
+// module.exports = mongoose.model('employees', userSchema)
+// =======
+module.exports = mongoose.model('users', userSchema)

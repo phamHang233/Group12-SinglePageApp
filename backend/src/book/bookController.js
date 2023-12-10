@@ -15,6 +15,39 @@ const getBooksByNameController = async (req, res) => {
 const getBookByIDController = async (req, res) => {
     console.log(req.params);
     var id = req.params.id;
+}
+
+// var createBookControllerfn = async (req, res) => {
+
+//     try {
+//         bookService.createBookDBService(req.body)
+//             .then(result => {
+//                 res.send({ 'status': result, "message": "Tao moi san pham thanh cong " })
+//                 console.log("oke")
+//             })
+//             .catch(error => {
+
+//                 res.send({ 'status': false, "message": "Tao moi san pham that bai " })
+//             })
+//     }
+//     catch (error) {
+//         console.error();
+//     }
+// }
+
+// const getBooksByNameController = async (req, res) => {
+//     var search_key = req.body.bookName;
+//     console.log(search_key);
+//     bookService.getBooksByName(search_key).then(result => {
+//         res.send(result)
+//     })
+//         .catch(error => {
+//             res.send(error)
+//         })
+// };
+
+// const getBookByIDController = async (req, res) => {
+//     var id = req.body.id
     bookService.getBookByID(id).then(result => {
         res.send(result)
     })
@@ -47,6 +80,8 @@ const updateBookControllerfn = async (req, res) => {
     console.log(req.body)
 
     bookService.updateBookDBService(id, req.body)
+
+    //bookService.updateBookDBService(req.body)
 
         .then(result => {
             res.send({ 'status': true, "message": "Cap nhat san pham thanh cong " })

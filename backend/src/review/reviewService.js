@@ -1,4 +1,5 @@
 const reviewModel = require('./reviewModel')
+
 const userModel = require('../user/userModel')
 module.exports.getDataFromDBService = () => {
     return new Promise((resolve, reject) => {

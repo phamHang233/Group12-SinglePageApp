@@ -1,4 +1,7 @@
-const bookModel = require('./bookModel')
+
+const { error } = require('jquery');
+var bookModel = require('./bookModel')
+
 module.exports.getDataFromDBService = () => {
     return new Promise((resolve, reject) => {
         bookModel.find({})
@@ -13,6 +16,7 @@ module.exports.getDataFromDBService = () => {
 module.exports.getBooksByName = (search_key) => {
     return new Promise((resolve, reject) => {
         bookModel.find({ bookName: { $regex: search_key, $options: 'i' } })
+
             .then(result => {
                 resolve(result);
             })
@@ -48,6 +52,19 @@ module.exports.deleteBookDBService = (id) => {
 module.exports.updateBookDBService = (id, bookDetails) => {
     return new Promise((resolve, reject) => {
         bookModel.findByIdAndUpdate(id, bookDetails, { useFindAndModify: false })
+// module.exports.updateBookDBService = (bookDetails) => {
+//     return new Promise((resolve, reject) => {
+//         bookModel.findByIdAndUpdate(bookDetails._id, {
+//             bookName:bookDetails.bookName,
+//             category:bookDetails.category,
+//             star:bookDetails.star,
+//             author:bookDetails.author,
+//             dailyPrice:bookDetails.dailyPrice,
+//             salePrice:bookDetails.salePrice,
+//             description: bookDetails.description,
+//             imagePath:bookDetails.imagePath
+//         })
+// >>>>>>> main
             .then(result => {
                 resolve(result)
                 console.log("lưu DL thành công")
@@ -81,4 +98,3 @@ module.exports.createBookDBService = (bookDetails) => {
             });
     })
 }
-

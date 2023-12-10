@@ -1,4 +1,5 @@
 const orderModel = require('./orderModel')
+
 module.exports.getDataFromDBService = () => {
     return new Promise((resolve, reject) => {
         orderModel.find({})

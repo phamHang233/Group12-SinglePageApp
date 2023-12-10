@@ -33,7 +33,7 @@ export class AddressPopupComponent implements OnInit {
   }
   ngOnInit(): void {
     if (this.authService.userValue != null) {
-      this.userID = this.authService.userValue._id;
+      this.userID = this.authService.userValue.id;
 
       this.getAddrDetail(this.userID)
 
@@ -44,34 +44,33 @@ export class AddressPopupComponent implements OnInit {
   createForm() {
     if (this.dataLoaded && this.address) {
       this.addressForm = this.formBuilder.group({
-        userName: [this.address.userName],
-        phone: [this.address.phone],
-        province: [this.address.province],
-        district: [this.address.district],
-        guild: [this.address.guild],
-        home: [this.address.home],
+        userName: [this.address.userName, [Validators.required]],
+        phone: [this.address.phone, [Validators.required]],
+        province: [this.address.province, [Validators.required]],
+        district: [this.address.district, [Validators.required]],
+        guild: [this.address.guild, [Validators.required]],
+        home: [this.address.home, [Validators.required]],
       });
     } else {
       this.addressForm = this.formBuilder.group({
-        userName: [''],
-        phone: [''],
-        province: [''],
-        district: [''],
-        guild: [''],
-        home: [''],
+        userName: ['', [Validators.required]],
+        phone: ['', [Validators.required]],
+        province: ['', [Validators.required]],
+        district: ['', [Validators.required]],
+        guild: ['', [Validators.required]],
+        home: ['', [Validators.required]],
       });
     }
   }
 
   finish() {
-    if (!this.address) {
-      this.addAddress();
-    }
-    else {
-      this.changeAddress();
-    }
-    this.closePopup();
+    if (this.addressForm.valid){
+      console.log(this.addressForm);
+      this.address = this.addressForm.value;
+      localStorage.setItem('address', JSON.stringify(this.address));
 
+      this.closePopup();
+    }
   }
   closePopup(): void {
     this.dialogRef.close();

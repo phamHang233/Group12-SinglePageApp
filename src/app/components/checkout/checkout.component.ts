@@ -31,9 +31,10 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.userValue != null) {
-      this.userID = this.authService.userValue._id;
+      this.userID = this.authService.userValue.id;
+      console.log(this.authService.userValue);
       console.log(this.userID)
-      this.getAddrDetail(this.userID)
+      //this.getAddrDetail(this.userID)
       // this.getAddress();
 
     }
@@ -96,19 +97,25 @@ export class CheckoutComponent implements OnInit {
       });
       const dialogRef = this.dialog.open(FinishedComponent, {
         width: '200px',
-
       });
+      dialogRef.afterClosed().subscribe(() => {
+        localStorage.removeItem('cartItems');
+        localStorage.removeItem('saleCartItems');
+      })
       this.onRefresh();
-
-
-
     });
 
   }
 
   changeAddress() {
     const dialogRef = this.dialog.open(AddressPopupComponent, {});
-    this.getAddrDetail(this.userID);
+    dialogRef.afterClosed().subscribe(() => {
+      //console.log(localStorage.getItem('address'));
+      let addreg = JSON.parse(localStorage.getItem('address')!);
+      this.address = addreg;
+      console.log(this.address);
+    })
+    //this.getAddrDetail(this.userID);
   }
 
   async onRefresh() {

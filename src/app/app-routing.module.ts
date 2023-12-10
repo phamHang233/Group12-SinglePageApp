@@ -11,6 +11,7 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
 import { SearchNameComponent } from './components/search-name/search-name.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+
 // import { AuthGuard } from './components/auth/_helpers/login.guard';
 import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
 import { HomeBookComponent } from './components/admin/home-book/home-book.component';
@@ -19,14 +20,18 @@ import { EditBookComponent } from './components/admin/edit-book/edit-book.compon
 import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
 // import { CheckoutComponent } from './components/checkout/checkout.component';
 
+import { RegisterComponent } from './components/auth/register/register.component';
+import { LoginComponent } from './components/auth/login/login.component';
+
+
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "category", component: CategoryComponent },
   { path: "post", component: PostComponent },
   { path: "contact", component: ContactComponent },
   // { path: "product", component: ProductComponent },
-  // { path: "login", component: LoginComponent },
-  // { path: "register", component: RegisterComponent },
+  { path: "login", component: LoginComponent },
+  { path: "register", component: RegisterComponent },
   { path: "book/details/:bookId", component: BookDetailComponent },
   { path: "search/:bookName", component: SearchNameComponent },
   { path: "cart", component: CartComponent },
