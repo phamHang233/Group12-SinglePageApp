@@ -11,7 +11,7 @@ import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostComponent } from './components/post/post.component';
 // import { AdminComponent } from './components/admin/admin.component';
-import { AuthComponent } from './components/auth/auth.component';
+//import { AuthComponent } from './components/auth/auth.component';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CategoryComponent } from './components/category/category.component';
@@ -46,7 +46,7 @@ export function tokenGetter() {
     NavComponent,
     HomeComponent,
     PostComponent,
-    AuthComponent,
+    //AuthComponent,
     BookDetailComponent,
     CartComponent,
     CategoryComponent,
