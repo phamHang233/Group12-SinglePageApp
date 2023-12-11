@@ -12,7 +12,14 @@ export class CartService {
 
   constructor(
     private router: Router,
-  ) { }
+  ) {
+   
+  }
+
+  setCartItems(){
+    if (localStorage.getItem("cartItems") != null) this.cartItems = JSON.parse(localStorage.getItem("cartItems")!);
+    else this.cartItems = new Array<BookCart>();
+  }
 
   addToCart(product: Book) {
     // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa

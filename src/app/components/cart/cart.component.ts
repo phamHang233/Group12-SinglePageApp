@@ -27,7 +27,6 @@ export class CartComponent implements OnInit {
 
   }
   ngOnInit(): void {
-
     this.getCartItems()
     this.getTotalPay();
     this.getTotalSale()
@@ -36,7 +35,6 @@ export class CartComponent implements OnInit {
   getCartItems() {
     // Lấy giá trị của khóa 'cartItems' từ Local Storage
     const savedCartItems = localStorage.getItem('cartItems');
-
     if (savedCartItems) {
 
       this.cartItems = JSON.parse(savedCartItems);

@@ -31,6 +31,7 @@ export class BookDetailComponent {
     this.activatedRoute.params.subscribe(params => {
       if (params["bookId"]) {
         this.getBookDetail(params["bookId"])
+        this.cartService.setCartItems();
         //this.getReview(params["bookId"])
       }
 

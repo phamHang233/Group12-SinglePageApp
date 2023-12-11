@@ -69,21 +69,21 @@ export class CheckoutComponent implements OnInit {
   getCartItems() {
     const savedCartItems = localStorage.getItem("saleCartItems");
     if (savedCartItems) {
-
       this.cartItems = JSON.parse(savedCartItems);
     }
   }
 
   getTotalPay() {
-
+    console.log(this.cartItems)
     for (let item of this.cartItems) {
+      console.log(item);
       this.totalPay = this.totalPay + item.book.salePrice * item.quantity
 
     }
   }
 
   finish(): void {
-
+    if (this.address == null) return;
     const now = new Date();
     this.cartItems.forEach(cartItem => {
       var orderCart = {
@@ -95,16 +95,13 @@ export class CheckoutComponent implements OnInit {
         console.log("OK")
 
       });
-      const dialogRef = this.dialog.open(FinishedComponent, {
-        width: '200px',
-      });
-      dialogRef.afterClosed().subscribe(() => {
-        localStorage.removeItem('cartItems');
-        localStorage.removeItem('saleCartItems');
-      })
-      this.onRefresh();
     });
-
+    localStorage.removeItem('cartItems');
+    localStorage.removeItem('saleCartItems');
+    const dialogRef = this.dialog.open(FinishedComponent, {
+      width: '200px',
+    });
+    //this.onRefresh();
   }
 
   changeAddress() {
