@@ -85,17 +85,29 @@ export class CheckoutComponent implements OnInit {
   finish(): void {
     if (this.address == null) return;
     const now = new Date();
+    var orderProductCart: {product_id: string, price: number, product_category_name: string, quantity: number}[] = []
     this.cartItems.forEach(cartItem => {
-      var orderCart = {
-        product_id: cartItem.book._id, price: cartItem.book.salePrice * cartItem.quantity,
-        product_category_name: cartItem.book.category, customer_id: this.userID, order_purchase_timestamp: now
-      }
-      console.log(orderCart)
+      orderProductCart.push({
+        product_id: cartItem.book._id, 
+        price: cartItem.book.salePrice * cartItem.quantity,
+        product_category_name: cartItem.book.category,
+        quantity: cartItem.quantity
+      })
+      /*console.log(orderCart)
       this.orderService.addOrder(orderCart).subscribe(response => {
         console.log("OK")
 
-      });
+      });*/
     });
+    var orderCart = {
+      products: orderProductCart,
+      order_purchase_timestamp: now,
+      customer_id: this.userID
+    }
+    console.log(orderCart);
+    this.orderService.addOrder(orderCart).subscribe(response => {
+      console.log(response)
+    })
     localStorage.removeItem('cartItems');
     localStorage.removeItem('saleCartItems');
     const dialogRef = this.dialog.open(FinishedComponent, {
