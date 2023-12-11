@@ -6,7 +6,7 @@ var getDataControllerfn = async (req, res) => {
 }
 
 var createBookControllerfn = async (req, res) => {
-
+console.log(req.body)
     try {
         bookService.createBookDBService(req.body)
             .then(result => {
@@ -24,7 +24,8 @@ var createBookControllerfn = async (req, res) => {
 }
 
 const getBooksByNameController = async (req, res) => {
-    var search_key = req.body.bookName;
+    console.log(req.params)
+    var search_key = req.params.search_key;
     console.log(search_key);
     bookService.getBooksByName(search_key).then(result => {
         res.send(result)
@@ -64,7 +65,9 @@ const updateBookControllerfn = async (req, res) => {
         })
 }
 const deleteBookController = async (req, res) => {
-    var id = req.body.id;
+    console.log(req.body)
+    console.log(req.params)
+    var id = req.params.id;
     console.log(id)
     bookService.deleteBookDBService(id)
         .then(result => {

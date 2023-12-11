@@ -10,7 +10,13 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+//
 
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { HomeBookComponent } from './components/admin/home-book/home-book.component';
+import { AddBookComponent } from './components/admin/add-book/add-book.component';
+import { EditBookComponent } from './components/admin/edit-book/edit-book.component';
+import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "category", component: CategoryComponent },
@@ -23,11 +29,11 @@ const routes: Routes = [
   { path: "search/:bookName", component: SearchNameComponent },
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
-  // { path: "admin", component: HomeAdminComponent },
-  // { path: "adminBooks", component: HomeBookComponent },
-  // { path: "addBook", component: AddBookComponent },
-  // { path: "editBook/:bookId", component: EditBookComponent },
-  // { path: "chart", component: LineChartComponent }
+  { path: "admin", component: HomeAdminComponent },
+  { path: "adminBooks", component: HomeBookComponent },
+  { path: "addBook", component: AddBookComponent },
+  { path: "editBook/:bookId", component: EditBookComponent },
+  { path: "chart", component: LineChartComponent }
 
 
 ];
