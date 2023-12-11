@@ -59,8 +59,10 @@
                                         <div>
                                             <input formControlName="imagePath" style="font-size: 1.5rem;" type="file"
                                                 (change)="handleFileInputChange($event)">
-                                            <img [src]="this.bookFormCreate.value.imagePath"
-                                                *ngIf="this.bookFormCreate.value.imagePath" class="imgPlaceholder">
+                                            <!-- <img [src]="this.bookFormCreate.value.imagePath"
+                                                *ngIf="this.bookFormCreate.value.imagePath" class="imgPlaceholder"> -->
+                                                <!-- <img [src]="getImageUrl()" *ngIf="imagePreview" class="imgPlaceholder"> -->
+                                                <img [src]="imagePreview" *ngIf="imagePreview" class="imgPlaceholder">
                                         </div>
                                     </div>
                                 </div>

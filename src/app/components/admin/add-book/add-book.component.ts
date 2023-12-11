@@ -26,6 +26,7 @@ import { MatSnackBar, MatSnackBarConfig,  } from '@angular/material/snack-bar';
   // encapsulation: ViewEncapsulation.None, // Use ViewEncapsulation.None to allow ::ng-deep
 })
 export class AddBookComponent implements OnInit {
+  imagePreview: string | null = null;
   bookFormCreate!: FormGroup;
   localUrl!: string;
   dataLoaded = false;
@@ -70,16 +71,50 @@ export class AddBookComponent implements OnInit {
 
     })
   }
-  handleFileInputChange(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-      reader.onload = (event: any) => {
-        this.bookFormCreate.value.imagePath = event.target.result;
-      }
-      var path = reader.readAsDataURL(event.target.files[0]);
-    }
+  // handleFileInputChange(event: any) {
+  //   if (event.target.files && event.target.files[0]) {
+  //     var reader = new FileReader();
+  //     reader.onload = (event: any) => {
+  //       this.bookFormCreate.value.imagePath = event.target.result;
+  //     }
+  //     var path = reader.readAsDataURL(event.target.files[0]);
+  //   }
 
+  // }
+
+  ///123
+//   handleFileInputChange(event: any) {
+//     if (event.target.files && event.target.files[0]) {
+//         const reader = new FileReader();
+        
+//         reader.onload = (e: any) => {
+//             this.imagePreview = event.target.files[0].name;
+//         };
+        
+//         reader.readAsDataURL(event.target.files[0]);
+//     }
+// }
+
+handleFileInputChange(event: any) {
+  if (event.target.files && event.target.files[0]) {
+    const reader = new FileReader();
+
+    reader.onload = (e: any) => {
+      // Set the value of imagePath in the form to the relative path
+      this.bookFormCreate.patchValue({ imagePath: `assets/images/${event.target.files[0].name}` });
+
+      // Update the imagePreview for displaying the preview
+      this.imagePreview = this.bookFormCreate.value.imagePath;
+    };
+
+    reader.readAsDataURL(event.target.files[0]);
   }
+}
+
+getImageUrl(): string | null {
+  // Assuming 'assets/images/' is the directory where your images are stored
+  return this.imagePreview ? `assets/images/${this.imagePreview}` : null;
+}
   saveShow() {
     if (this.bookFormCreate.valid) {
 
