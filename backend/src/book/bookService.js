@@ -15,6 +15,7 @@ module.exports.getDataFromDBService = () => {
 
 module.exports.createBookDBService = (bookDetails) => {
     return new Promise((resolve, reject) => {
+        console.log(bookDetails)
         var bookModelData = new bookModel()
         bookModelData.bookName = bookDetails.bookName
         bookModelData.category = bookDetails.category
