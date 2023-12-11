@@ -1,28 +1,37 @@
 
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
-var orderSchema = new Schema({
-
-    product_id: {
+const productSchema = new Schema(
+    {
+      product_id: {
         type: String,
-        require: true
-    },
-
-    price: {
+        required: true,
+      },
+      price: {
         type: Number,
-        require: true
-    },
-    product_category_name: {
+        required: true,
+      },
+      product_category_name: {
         type: String,
-        require: true
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
     },
+    { _id: false } // Tắt tự động tạo _id cho phần tử trong mảng
+  );
+  
+const orderSchema = new Schema({
+    products: [productSchema],
     customer_id: {
-        type: String,
-        require: true
+      type: String,
+      required: true,
     },
     order_purchase_timestamp: {
-        type: Date,
-        require: true
-    }
-})
-module.exports = mongoose.model('orders', orderSchema)
+      type: Date,
+    },
+  });
+  
+  module.exports = mongoose.model("orders", orderSchema);
