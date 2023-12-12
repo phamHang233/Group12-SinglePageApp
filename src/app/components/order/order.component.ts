@@ -1,5 +1,6 @@
 import { preserveWhitespacesDefault } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { async } from 'rxjs';
 import { Book } from 'src/app/models/bookModel';
 import { User } from 'src/app/models/userModel';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,9 +14,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  user!: User
+  user: User = this.authService.userValue
   ordersList!: Array<UserOrder>
-  currentBook!:Book
+  currentProduct!:Product
 
   constructor(
     private authService: AuthService,
@@ -27,33 +28,41 @@ export class OrderComponent implements OnInit {
     this.getUserOrder()
   }
 
-  getUserOrder(){
-    this.user = this.authService.userValue;
+  getUserOrder() {
+    //console.log(this.user.id)
     this.ordersList = new Array<UserOrder>
-    this.userService.getOrderByID({cusId: this.user.id}).subscribe(response => {
-      for (let i = 0; i < response.length; i++) {
-        var element = new UserOrder()
-        var date:string = response[i]['order_purchase_timestamp'].toString()
-        element.order_purchase_timestamp = date.split('T')[0]
-        element.totalPrice = 0
-        var products = response[i]['products']
-        for (let j = 0; j < products.length; j++){
-          this.bookService.getBookById(products[j]['product_id']).subscribe(response => {
-            var product = new Product()
-            product.id = response._id
-            product.bookName = response.bookName
-            product.imagePath = response.imagePath
-            product.price = products[j]['price']
-            product.quantity = products[j]['quantity']
-            element.totalPrice += product.price
-            element.products.push(product)
+    this.userService.getOrderByID({ cusId: this.user.id }).subscribe(async response => {
+      await response.forEach(async (order: any) => {
+        var userOrder: UserOrder = new UserOrder
+        userOrder.order_purchase_timestamp = order.order_purchase_timestamp.toString().split('T')[0]
+        userOrder.totalPrice = 0;
+        var productsList: Array<Product> = new Array<Product>
+        await order['products'].forEach((product:any) => {
+          this.bookService.getBookById(product.product_id).subscribe(response => {
+            console.log(response)
+            var p = new Product
+            p.id = response._id
+            p.bookName = response.bookName
+            p.imagePath = response.imagePath
+            p.quantity = product.quantity
+            p.price = product.price
+            userOrder.totalPrice += product.price
+            productsList.push(p)
           })
-        }
-        //console.log(element)
-        this.ordersList.push(element)
-      }
+        });
+        userOrder.products = productsList
+        this.ordersList.push(userOrder)
+      });
     })
-    
+    //console.log(this.productsList)
+  }
+
+  getBook(){
+
+  }
+
+  getTime(timeStr: any){
+    return timeStr.toString().split('T')[0]
   }
 }
 

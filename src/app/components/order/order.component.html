@@ -2,7 +2,7 @@
 <div class="container">
     <div> 
         <div class="order-container" *ngFor="let order of ordersList">
-            <div class="order-field"> {{order.order_purchase_timestamp}} </div>
+            <div class="order-field"> {{getTime(order.order_purchase_timestamp)}} </div>
             <div class="order-field"> Tổng giá tiền đơn hàng: 
                 <span class="product__panel-price-current">
                     {{order.totalPrice.toLocaleString()}}đ
