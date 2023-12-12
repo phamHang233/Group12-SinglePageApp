@@ -45,7 +45,7 @@ export class OrderComponent implements OnInit {
             product.imagePath = response.imagePath
             product.price = products[j]['price']
             product.quantity = products[j]['quantity']
-            element.totalPrice += product.price * product.quantity
+            element.totalPrice += product.price
             element.products.push(product)
           })
         }
