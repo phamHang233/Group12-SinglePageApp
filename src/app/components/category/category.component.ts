@@ -41,8 +41,6 @@ export class CategoryComponent implements OnInit {
   constructor(
     private bookService: BookService,
 
-
-
   ) {
 
   }
