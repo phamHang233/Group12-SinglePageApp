@@ -11,10 +11,10 @@
             <div class="row product__panel">
                 <div class="product__panel-item col-lg-3 col-md-4 col-sm-6" *ngFor="let product of order.products">
                     <div class="product__panel-item-wrap">
-                        <div class="product__panel-img-wrap">
+                        <div class="product__panel-img-wrap image-fix">
                             <img src="{{product.imagePath}}" alt="" class="product__panel-img">
                         </div>
-                        <h3 class="product__panel-heading">
+                        <h3 class="product__panel-heading" style="font-size: 22px;">
                             <a routerLink="/book/details/{{product.id}}" class="product__panel-link">{{product.bookName}}</a>
                             <div>Số lượng: {{product.quantity}}</div>
                         </h3>

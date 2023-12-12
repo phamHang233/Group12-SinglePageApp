@@ -95,6 +95,8 @@ export class HomeAdminComponent implements OnInit {
         this.orderCounts["11-2023"] || 0,
         this.orderCounts["12-2023"] || 0,
       ];
+      const maxDataValue = Math.max(...data);
+      const suggestedMaxValue = maxDataValue + 2;
       // Log the data for debugging
       //console.log("Data:", [this.orderCounts["1-2023"], this.orderCounts["2-2023"], this.orderCounts["3-2023"], this.orderCounts["4-2023"], this.orderCounts["5-2023"], this.orderCounts["6-2023"], this.orderCounts["7-2023"], this.orderCounts["8-2023"], this.orderCounts["9-2023"], this.orderCounts["10-2023"], this.orderCounts["11-2023"], this.orderCounts["12-2023"]]);
       // Clear the canvas
@@ -118,7 +120,7 @@ export class HomeAdminComponent implements OnInit {
             y: {
               beginAtZero: true,
               suggestedMin: 1, // Set the minimum value for the Y-axis
-              suggestedMax: 8, // Set the maximum value for the Y-axis
+              suggestedMax: suggestedMaxValue, // Set the maximum value for the Y-axis
               title: {
                 display: true,
                 text: 'Số lượng đơn' // Đặt tên cho trục Y

@@ -7,3 +7,6 @@
     margin-top: 10px;
     font-size: 15px;
 }
+.image-fix{
+    max-width: 75%;
+}
