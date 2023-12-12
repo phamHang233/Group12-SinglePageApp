@@ -25,5 +25,6 @@ router.route('/order').get(orderController.getDataControllerfn)
 router.route('/order/add').post(orderController.createOrderControllerfn)
 
 router.route('/review').get(reviewController.getDataControllerfn)
+router.route('/review/:bookID').get(reviewController.getReviewByBookController)
 
 module.exports = router;
