@@ -80,14 +80,33 @@ export class HomeAdminComponent implements OnInit {
     if (this.chartCanvasOrder) {
       const chartElement = this.chartCanvasOrder.nativeElement;
       const ctx = chartElement.getContext('2d');
+      // Replace undefined values with 0
+      const data = [
+        this.orderCounts["1-2023"] || 0,
+        this.orderCounts["2-2023"] || 0,
+        this.orderCounts["3-2023"] || 0,
+        this.orderCounts["4-2023"] || 0,
+        this.orderCounts["5-2023"] || 0,
+        this.orderCounts["6-2023"] || 0,
+        this.orderCounts["7-2023"] || 0,
+        this.orderCounts["8-2023"] || 0,
+        this.orderCounts["9-2023"] || 0,
+        this.orderCounts["10-2023"] || 0,
+        this.orderCounts["11-2023"] || 0,
+        this.orderCounts["12-2023"] || 0,
+      ];
+      // Log the data for debugging
+      //console.log("Data:", [this.orderCounts["1-2023"], this.orderCounts["2-2023"], this.orderCounts["3-2023"], this.orderCounts["4-2023"], this.orderCounts["5-2023"], this.orderCounts["6-2023"], this.orderCounts["7-2023"], this.orderCounts["8-2023"], this.orderCounts["9-2023"], this.orderCounts["10-2023"], this.orderCounts["11-2023"], this.orderCounts["12-2023"]]);
+      // Clear the canvas
+      ctx.clearRect(0, 0, chartElement.width, chartElement.height);
       this.lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', "Tháng Tám"],
+          labels: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', "Tháng Tám", "Tháng Chín", "Tháng Mười", "Tháng Mười Một", "Tháng Mười Hai"],
           datasets: [
             {
               label: 'Số đơn hàng',
-              data: [this.orderCounts["1-2023"], this.orderCounts["2-2023"], this.orderCounts["3-2023"], this.orderCounts["4-2023"], this.orderCounts["5-2023"], this.orderCounts["6-2023"], this.orderCounts["7-2023"], this.orderCounts["8-2023"]],
+              data: data,
               borderColor: 'rgb(75, 192, 192)',
               fill: false
             }
@@ -98,6 +117,8 @@ export class HomeAdminComponent implements OnInit {
           scales: {
             y: {
               beginAtZero: true,
+              suggestedMin: 1, // Set the minimum value for the Y-axis
+              suggestedMax: 8, // Set the maximum value for the Y-axis
               title: {
                 display: true,
                 text: 'Số lượng đơn' // Đặt tên cho trục Y
@@ -122,14 +143,30 @@ export class HomeAdminComponent implements OnInit {
     if (this.chartCanvasPrice) {
       const chartElement = this.chartCanvasPrice.nativeElement;
       const ctx = chartElement.getContext('2d');
+
+      //
+      const data = [
+        this.orderPrice["1-2023"] || 0,
+        this.orderPrice["2-2023"] || 0,
+        this.orderPrice["3-2023"] || 0,
+        this.orderPrice["4-2023"] || 0,
+        this.orderPrice["5-2023"] || 0,
+        this.orderPrice["6-2023"] || 0,
+        this.orderPrice["7-2023"] || 150000,
+        this.orderPrice["8-2023"] || 0,
+        this.orderPrice["9-2023"] || 0,
+        this.orderPrice["10-2023"] || 0,
+        this.orderPrice["11-2023"] || 0,
+        this.orderPrice["12-2023"] || 300000,
+      ];
       this.lineChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', "Tháng Tám"],
+          labels: ['Tháng Một', 'Tháng Hai', 'Tháng Ba', 'Tháng Tư', 'Tháng Năm', 'Tháng Sáu', 'Tháng Bảy', "Tháng Tám", "Tháng Chín", "Tháng Mười", "Tháng Mười Một", "Tháng Mười Hai"],
           datasets: [
             {
               label: 'Thu nhập',
-              data: [this.orderPrice["1-2023"], this.orderPrice["2-2023"], this.orderPrice["3-2023"], this.orderPrice["4-2023"], this.orderPrice["5-2023"], this.orderPrice["6-2023"], this.orderPrice["7-2023"], this.orderPrice["8-2023"]],
+              data: data,
               borderColor: 'rgb(255, 102, 102)',
               fill: false
             }
@@ -139,14 +176,16 @@ export class HomeAdminComponent implements OnInit {
           responsive: true,
           scales: {
             y: {
+              suggestedMin: 100000, // Set the minimum value for the Y-axis
+              suggestedMax: 1000000, // Set the maximum value for the Y-axis
               beginAtZero: true,
               title: {
                 display: true,
-                text: 'Doanh thu (USD)' // Đặt tên cho trục Y
+                text: 'Doanh thu (VND)' // Đặt tên cho trục Y
               },
               ticks: {
                 callback: function (value, index, values) {
-                  return '$' + value; // Thêm tiền tố "$" vào giá trị
+                  return value.toLocaleString() + ' VND'; // Format value with currency symbol and comma separator
                 }
               }
 
@@ -156,6 +195,18 @@ export class HomeAdminComponent implements OnInit {
             title: {
               display: true,
               text: 'Tổng doanh thu' // Đặt tiêu đề ở đây
+            },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  let label = context.dataset.label || '';
+                  if (label) {
+                    label += ': ';
+                  }
+                  label +=  context.parsed.y.toLocaleString() + ' VND';
+                  return label;
+                }
+              }
             }
           }
         }
