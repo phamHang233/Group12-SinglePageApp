@@ -28,7 +28,6 @@ export class UserService {
   getAll() {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
-
   getById(id: number) {
     return this.http.get<User>(`${this.apiUrl}/users/${id}`);
   }
@@ -42,5 +41,8 @@ export class UserService {
   }
   getAddr(userID: string): Observable<Address> {
     return this.http.get<Address>(this.apiUrl + "addr/getAddr/" + userID)
+  }
+  getOrderByID(data: any): Observable<any>{
+    return this.http.post<any>(this.apiUrl + "user/getOrders", data)
   }
 }

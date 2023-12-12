@@ -130,6 +130,12 @@
                         <li class="header__nav-item">
                             <a routerLink="/contact" class="header__nav-link">Liên hệ</a>
                         </li>
+
+                        <div *ngIf="isAuthenticated()">
+                            <li class="header__nav-item">
+                                <a routerLink="/order" class="header__nav-link">Lịch sử đặt hàng</a>
+                            </li>
+                        </div>
                     </ul>
                 </div>
             </section>

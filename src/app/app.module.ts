@@ -27,6 +27,8 @@ import { FinishedComponent } from './components/checkout/finished/finished.compo
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { OrderComponent } from './components/order/order.component';
+
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -46,7 +48,8 @@ export function tokenGetter() {
     FinishedComponent,
     AddressPopupComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,

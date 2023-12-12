@@ -10,6 +10,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { OrderComponent } from './components/order/order.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: "search/:bookName", component: SearchNameComponent },
   { path: "cart", component: CartComponent },
   { path: "checkout", component: CheckoutComponent },
+  { path: "order", component: OrderComponent },
   // { path: "admin", component: HomeAdminComponent },
   // { path: "adminBooks", component: HomeBookComponent },
   // { path: "addBook", component: AddBookComponent },
