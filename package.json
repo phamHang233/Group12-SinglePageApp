@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
     "@auth0/angular-jwt": "^5.1.2",
+    "@material/snackbar": "^15.0.0-canary.bc9ae6c9c.0",
     "@ng-bootstrap/ng-bootstrap": "^15.0.1",
     "angular-jwt": "^0.1.11",
     "bootstrap": "^5.3.0",
