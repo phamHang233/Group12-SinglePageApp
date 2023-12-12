@@ -31,6 +31,7 @@ export class AddBookComponent implements OnInit {
   bookFormCreate!: FormGroup;
   localUrl!: string;
   dataLoaded = false;
+  selectedFileName: string | null = null;
   constructor(
     private bookService: BookService,
     private authService: AuthService,
@@ -73,21 +74,29 @@ export class AddBookComponent implements OnInit {
     })
   }
 
-handleFileInputChange(event: any) {
-  if (event.target.files && event.target.files[0]) {
-    const reader = new FileReader();
-
-    reader.onload = (e: any) => {
-      // Set the value of imagePath in the form to the relative path
-      this.bookFormCreate.patchValue({ imagePath: `assets/images/${event.target.files[0].name}` });
-
-      // Update the imagePreview for displaying the preview
-      this.imagePreview = this.bookFormCreate.value.imagePath;
-    };
-
-    reader.readAsDataURL(event.target.files[0]);
+  handleFileInputChange(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        this.imagePreview = e.target.result;
+        this.selectedFileName = event.target.files[0].name;
+  
+        // Call saveForm when the image is loaded
+        this.saveForm();
+      };
+  
+      reader.readAsDataURL(event.target.files[0]);
+    }
   }
-}
+  
+  saveForm() {
+    if (this.selectedFileName) {
+      this.bookFormCreate.patchValue({ imagePath: `assets/images/${this.selectedFileName}` });
+    }
+  
+    // Perform other form-saving logic here
+  }
 
 getImageUrl(): string | null {
   // Assuming 'assets/images/' is the directory where your images are stored

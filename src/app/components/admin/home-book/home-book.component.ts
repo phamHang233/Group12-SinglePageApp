@@ -53,7 +53,7 @@ export class HomeBookComponent implements OnInit {
     if (confirm("Bạn muốn xóa dữ liệu?")) {
       this.bookService.deleteBook(bookID).subscribe(response => {
         //this.openSnackBar('Xoá thành công', 'success-snackbar');
-        this.toasterService.success('Cập nhật thành công')
+        this.toasterService.success('Xoá thành công')
         this.getBooks();
       }, error => {
         console.log(error)
