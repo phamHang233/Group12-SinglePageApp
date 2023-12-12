@@ -18,7 +18,7 @@ export class BookService {
     return this.httpClient.get<Array<Book>>(this.apiUrl + 'bestSellerBooks')
   }
   getBooksByName(search_key: any): Observable<Array<Book>> {
-    var url = this.apiUrl + "search/" + search_key
+    var url = this.apiUrl + "books/name/" + search_key
     return this.httpClient.get<Array<Book>>(url)
   }
 
@@ -28,15 +28,16 @@ export class BookService {
   }
 
   addBook(data: any): Observable<any> {
-    return this.httpClient.post<any>(this.apiUrl + "books/add", data)
+    return this.httpClient.put<any>(this.apiUrl + "createBooks", data)
   }
 
   updateBook(id: string, data: any): Observable<any> {
-    return this.httpClient.put<any>(this.apiUrl + "books/update/" + id, data)
+    return this.httpClient.put<any>(this.apiUrl + "books/update/:id" , data)
   }
 
   deleteBook(id: string): Observable<any> {
-    return this.httpClient.delete<any>(this.apiUrl + "books/delete/" + id)
+    console.log(id)
+    return this.httpClient.delete<any>(`${this.apiUrl}books/delete/${id}`);
   }
   searchBooks(keyword: string): Observable<Array<Book>> {
 

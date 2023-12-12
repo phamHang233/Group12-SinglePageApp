@@ -1,0 +1,31 @@
+<app-nav></app-nav>
+<div class="container">
+    <div> 
+        <div class="order-container" *ngFor="let order of ordersList">
+            <div class="order-field"> {{getTime(order.order_purchase_timestamp)}} </div>
+            <div class="order-field"> Tổng giá tiền đơn hàng: 
+                <span class="product__panel-price-current">
+                    {{order.totalPrice.toLocaleString()}}đ
+                </span>
+            </div>
+            <div class="row product__panel">
+                <div class="product__panel-item col-lg-3 col-md-4 col-sm-6" *ngFor="let product of order.products">
+                    <div class="product__panel-item-wrap">
+                        <div class="product__panel-img-wrap">
+                            <img src="{{product.imagePath}}" alt="" class="product__panel-img">
+                        </div>
+                        <h3 class="product__panel-heading">
+                            <a routerLink="/book/details/{{product.id}}" class="product__panel-link">{{product.bookName}}</a>
+                            <div>Số lượng: {{product.quantity}}</div>
+                        </h3>
+                        <div class="product__panel-price">
+                            <span class="product__panel-price-current">
+                                {{product.price.toLocaleString()}}đ
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

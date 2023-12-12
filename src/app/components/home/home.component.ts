@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     //this.authService.logout();
     this.getAllBook();
-    this.getAllOrder();
+    //this.getAllOrder();
     //this.getBooksBestSeller();
     this.currentPage = 1;
   }
@@ -82,12 +82,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  getAllOrder(){
+  /*getAllOrder(){
     console.log("Get all orders");
     this.orderService.getAllOrder().subscribe(response => {
       console.log(response);
     });
-  }
+  }*/
 }
 
 

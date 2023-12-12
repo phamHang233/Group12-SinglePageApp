@@ -44,6 +44,12 @@ export class NavComponent implements OnInit {
     else return false
   }
 
+  getNumberCartItems(){
+    if (localStorage.getItem('cartItems') == null) return "0";
+    var t = JSON.parse(localStorage.getItem('cartItems')!).length;
+    return t.toString();
+  }
+
 
   cart() {
     if (this.isAuthenticated()) {

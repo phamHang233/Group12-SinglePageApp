@@ -13,11 +13,11 @@ router.route('/user/login').post(userController.loginUserControllerfn)
 router.route('/user/getOrders').post(userController.getAllOrdersOfUserControllerfn)
 
 router.route('/allBooks').get(bookController.getDataControllerfn)
-router.route('/createBooks').get(bookController.createBookControllerfn)
+router.route('/createBooks').put(bookController.createBookControllerfn)
 router.route('/books/update/:id').put(bookController.updateBookControllerfn)
 router.route('/books/:bookId').post(bookController.getBookByIDController)
 router.delete('/books/delete/:id', bookController.deleteBookController)
-router.route('/books/name').get(bookController.getBooksByNameController)
+router.route('/books/name/:search_key').get(bookController.getBooksByNameController)
 
 router.route('/addr/getAddr/:userID').get(addrController.getDataControllerfn)
 

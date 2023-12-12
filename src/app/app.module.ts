@@ -27,6 +27,17 @@ import { FinishedComponent } from './components/checkout/finished/finished.compo
 import { AddressPopupComponent } from './components/checkout/address-popup/address-popup.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { LoginComponent } from './components/auth/login/login.component';
+import { AddBookComponent } from './components/admin/add-book/add-book.component';
+import { EditBookComponent } from './components/admin/edit-book/edit-book.component';
+import { HomeAdminComponent } from './components/admin/home-admin/home-admin.component';
+import { HomeBookComponent } from './components/admin/home-book/home-book.component';
+import { LineChartComponent } from './components/admin/line-chart/line-chart.component';
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
+import { StatisticComponent } from './components/admin/statistic/statistic.component';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { OrderComponent } from './components/order/order.component';
+
 export function tokenGetter() {
   return localStorage.getItem("token");
 }
@@ -46,7 +57,15 @@ export function tokenGetter() {
     FinishedComponent,
     AddressPopupComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    OrderComponent,
+    AddBookComponent,
+    EditBookComponent,
+    HomeAdminComponent,
+    HomeBookComponent,
+    LineChartComponent,
+    SidebarComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,
@@ -71,6 +90,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
       }
     }),
+
+    MatSnackBarModule,
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

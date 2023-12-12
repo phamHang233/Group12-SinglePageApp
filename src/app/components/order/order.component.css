@@ -1,0 +1,9 @@
+.order-container{
+    margin-top: 20px;
+    border-top: 2px solid gray;
+}
+
+.order-field{
+    margin-top: 10px;
+    font-size: 15px;
+}
