@@ -11,6 +11,7 @@
     z-index: 1;
     /* Ensure the sidebar is behind the button */
     transition: transform 0.3s ease;
+    margin-top: 90px;
 }
 
 .sidebar-hidden .sidebar {
@@ -146,4 +147,7 @@ a:hover::before {
 
 .sidebar-item.active .submenu {
     display: block;
+}
+li {
+    list-style: none;;
 }

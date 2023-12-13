@@ -34,7 +34,8 @@ export class OrderComponent implements OnInit {
     this.userService.getOrderByID({ cusId: this.user.id }).subscribe(async response => {
       await response.forEach(async (order: any) => {
         var userOrder: UserOrder = new UserOrder
-        userOrder.order_purchase_timestamp = order.order_purchase_timestamp.toString().split('T')[0]
+        userOrder.order_purchase_timestamp = order.order_purchase_timestamp.toString().split('T')[0] 
+        userOrder.order_purchase_timestamp += ' ' + order.order_purchase_timestamp.toString().split('T')[1].split('.')[0]
         userOrder.totalPrice = 0;
         var productsList: Array<Product> = new Array<Product>
         await order['products'].forEach((product:any) => {
